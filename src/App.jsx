@@ -1,17 +1,23 @@
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import About from './components/About';
-import Skills from './components/Skills';
+import NavBar from './components/NavBar';
+import Home from './components/Home';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-
 function App() {
-  const mySkills = ['HTML', 'CSS', 'JavaScript', 'PHP', 'React', 'Node.js', 'Python', 'SQL', 'Git', 'GitHub', 'Numpy', 'Pandas', 'Matplotlib', 'Seaborn', 'Scikit-learn', 'MongoDB'];
-  
   return (
     <div>
       <Header name="Yug Umrania" />
-      <About />
-      <Skills skillList={mySkills} />
+      <NavBar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+
       <Footer />
     </div>
   );
