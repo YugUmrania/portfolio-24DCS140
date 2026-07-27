@@ -1,20 +1,38 @@
+import { useState, useEffect } from 'react';
+import Spinner from './Spinner';
+import ErrorMessage from './ErrorMessage';
+import RepoList from './RepoList';
+
 function Projects() {
-  const projectList = [
-    { id: 1, title: 'E-Commerce Inventory Management System', desc: 'A C++ OOP-based console application designed for managing products, carts, and orders in a simulated e-commerce environment.'},
-    { id: 2, title: 'Used Car Price Prediction and Insights System', desc: 'A machine learning-based web application that predicts the price of used cars based on various features like brand, model, year, and fuel type.'},
-    { id: 3, title: 'Personal Portfolio Website', desc: 'A responsive website showcasing my projects and skills built with HTML, CSS, and JavaScript.'},
-  ];
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Fetch public repositories for the repository owner
+    fetch('https://api.github.com/users/YugUmrania/repos')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch repositories');
+        }
+        return response.json();
+      })
+      .then((result) => {
+        setData(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <section>
-      <h2>Projects</h2>
-      <ul>
-        {projectList.map((proj) => (
-          <li key={proj.id}>
-            <strong>{proj.title}</strong> — {proj.desc} — — {proj.demo}
-          </li>
-        ))}
-      </ul>
+      <h2>My GitHub Projects</h2>
+      {loading && <Spinner />}
+      {error && <ErrorMessage message={error} />}
+      {!loading && !error && <RepoList data={data} />}
     </section>
   );
 }
