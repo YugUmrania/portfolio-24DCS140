@@ -28,7 +28,7 @@ function Projects() {
   }, []);
 
   return (
-    <section>
+    <section className="projects">
       <h2>My GitHub Projects</h2>
       {loading && <Spinner />}
       {error && <ErrorMessage message={error} />}

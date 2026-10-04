@@ -1,6 +1,7 @@
 function Spinner() {
     return (
-        <div>
+        <div className="spinner">
+            <div className="spinner-ring"></div>
             <p>Loading Repositories...</p>
         </div>
     );

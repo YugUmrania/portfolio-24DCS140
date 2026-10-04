@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <p>© 2026 My Portfolio. All rights reserved.</p>
+      <p>© 2026 Yug Umrania. All Rights Reserved.</p>
     </footer>
   );
 }

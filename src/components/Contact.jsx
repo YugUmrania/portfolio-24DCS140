@@ -8,26 +8,36 @@ function Contact() {
     alert('Message sending will be implemented later!');
   };
 
-  return (
-    <section>
+return (
+    <section className="contact">
       <h2>Contact Me</h2>
+      <p className="contact-intro">
+        Have a question, a project idea, or just want to say hi? Drop me a line below — I'd love to hear from you.
+      </p>
 
-      <button onClick={() => setShowTip(!showTip)}>
+      <div className="contact-links">
+        <a href="mailto:umraniayug4507@gmail.com">Email</a>
+        <a href="https://github.com/YugUmrania" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/yug-umrania-368816331" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+
+      <button className="tip-btn" onClick={() => setShowTip(!showTip)}>
         {showTip ? 'Hide Tip' : 'Show Tip'}
       </button>
-      {showTip && <p>Tip: Include your email so I can respond!</p>}
+      {showTip && <p className="tip">Tip: Include your email so I can respond!</p>}
 
-      <div>
-        <label>Your message:</label>
-        <input
-          type="text"
+      <div className="form">
+        <label htmlFor="msg">Your message</label>
+        <textarea
+          id="msg"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type your message..."
+          rows="4"
         />
-        <p>You typed: {message}</p>
+        <p className="preview">You typed: {message}</p>
 
-        <button onClick={handleSend}>Send</button>
+        <button onClick={handleSend}>Send Message</button>
       </div>
     </section>
   );

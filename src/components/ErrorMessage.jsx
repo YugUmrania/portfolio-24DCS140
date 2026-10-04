@@ -1,6 +1,6 @@
 function ErrorMessage({message}) {
     return (
-        <div>
+        <div className="error-box">
             <p>Something went wrong: {message}</p>
         </div>
     );
